@@ -1,0 +1,22 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
+
+QBCore.Functions.CreateCallback('nwrp_vehicletief:OwnedCar', function(source, cb, plate)
+    local src = source
+   -- local player = QBCore.Functions.GetPlayer(src)
+   -- local closestVehicle = QBCore.Functions.GetClosestVehicle(coords)
+
+
+
+    local result = MySQL.query.await('SELECT plate FROM player_vehicles WHERE plate = ?', { plate })
+    print(palte)
+    if result[1] == nil then
+        Citizen.Wait(5)
+        print('tadady bude  scrap ')
+        TriggerClientEvent('QBCore:Notify', src, 'tohle auto nekomu patri', 'error', 3000)
+        CancelEvent()
+    else
+        print('tady bude stop hrače')
+
+    end
+end)
